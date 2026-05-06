@@ -134,12 +134,12 @@ export default function Home() {
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="flex gap-3 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
               {originalProducts.map((product, index) => (
                 <div
                   key={product.name}
-                  className={`overflow-hidden rounded-3xl bg-white/10 ${
-                    index === 1 ? "translate-y-8" : ""
+                  className={`min-w-[140px] overflow-hidden rounded-3xl bg-white/10 md:min-w-0 ${
+                    index === 1 ? "md:translate-y-8" : ""
                   }`}
                 >
                   <Image
@@ -147,13 +147,13 @@ export default function Home() {
                     alt={product.name}
                     width={500}
                     height={750}
-                    className="h-72 w-full object-contain p-3"
+                    className="h-56 w-full object-contain p-2 md:h-72 md:p-3"
                   />
                 </div>
               ))}
             </div>
 
-            <p className="mt-12 text-center text-sm text-white/55">
+            <p className="mt-8 text-center text-sm text-white/55 md:mt-12">
               Product visuals are used for concept testing. Packaging and final
               formulas may change.
             </p>
