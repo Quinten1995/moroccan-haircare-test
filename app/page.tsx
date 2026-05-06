@@ -147,7 +147,7 @@ export default function Home() {
                     alt={product.name}
                     width={500}
                     height={750}
-                    className="h-72 w-full object-cover"
+                    className="h-72 w-full object-contain p-3"
                   />
                 </div>
               ))}
@@ -198,7 +198,7 @@ export default function Home() {
                     alt={product.name}
                     width={500}
                     height={700}
-                    className="h-52 w-full object-cover"
+                    className="h-80 w-full object-contain p-4 sm:h-52 sm:p-2"
                   />
                   <div className="flex flex-1 flex-col p-4">
                     <h4 className="font-bold">{product.name}</h4>
