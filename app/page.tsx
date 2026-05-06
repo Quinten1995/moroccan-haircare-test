@@ -62,6 +62,10 @@ export default function Home() {
   const [hairType, setHairType] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewProduct, setPreviewProduct] = useState<{
+    name: string;
+    image: string;
+  } | null>(null);
 
   const prices =
     selectedLine === "original"
@@ -136,9 +140,16 @@ export default function Home() {
           <div className="rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur">
             <div className="grid grid-cols-3 gap-2 md:gap-3">
               {originalProducts.map((product, index) => (
-                <div
+                <button
+                  type="button"
                   key={product.name}
-                  className={`overflow-hidden rounded-3xl bg-white/10 ${
+                  onClick={() =>
+                    setPreviewProduct({
+                      name: product.name,
+                      image: product.image,
+                    })
+                  }
+                  className={`overflow-hidden rounded-3xl bg-white/10 transition hover:bg-white/20 ${
                     index === 1 ? "md:translate-y-8" : ""
                   }`}
                 >
@@ -149,13 +160,17 @@ export default function Home() {
                     height={750}
                     className="h-40 w-full object-contain p-2 sm:h-52 md:h-72 md:p-3"
                   />
-                </div>
+                </button>
               ))}
             </div>
 
             <p className="mt-8 text-center text-sm text-white/55 md:mt-12">
               Product visuals are used for concept testing. Packaging and final
               formulas may change.
+            </p>
+
+            <p className="mt-3 text-center text-xs text-white/40">
+              Tap a product image to view it larger.
             </p>
           </div>
         </div>
@@ -193,13 +208,25 @@ export default function Home() {
                   key={product.name}
                   className="flex h-full flex-col overflow-hidden rounded-3xl border border-black/10 bg-[#f6efe4]"
                 >
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={500}
-                    height={700}
-                    className="h-80 w-full object-contain p-4 sm:h-52 sm:p-2"
-                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPreviewProduct({
+                        name: product.name,
+                        image: product.image,
+                      })
+                    }
+                    className="transition hover:opacity-90"
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={500}
+                      height={700}
+                      className="h-80 w-full object-contain p-4 sm:h-52 sm:p-2"
+                    />
+                  </button>
+
                   <div className="flex flex-1 flex-col p-4">
                     <h4 className="font-bold">{product.name}</h4>
                     <p className="mt-2 text-sm leading-6 text-black/60">
@@ -378,6 +405,38 @@ export default function Home() {
           </div>
         </section>
       </section>
+
+      {previewProduct && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-8"
+          onClick={() => setPreviewProduct(null)}
+        >
+          <div
+            className="relative max-h-[90vh] w-full max-w-md rounded-[2rem] bg-[#f6efe4] p-5 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setPreviewProduct(null)}
+              className="absolute right-4 top-4 rounded-full bg-black/80 px-3 py-1 text-sm font-semibold text-white"
+            >
+              Close
+            </button>
+
+            <Image
+              src={previewProduct.image}
+              alt={previewProduct.name}
+              width={800}
+              height={1100}
+              className="max-h-[75vh] w-full object-contain p-4"
+            />
+
+            <p className="mt-3 text-center font-semibold text-[#1e1711]">
+              {previewProduct.name}
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
