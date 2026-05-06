@@ -99,18 +99,18 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f6efe4] text-[#1e1711]">
+    <main className="min-h-screen overflow-x-hidden bg-[#f6efe4] text-[#1e1711]">
       <section className="relative overflow-hidden bg-[#201711] text-white">
         <div className="absolute left-[-10%] top-[-20%] h-80 w-80 rounded-full bg-[#c49a4c]/20 blur-3xl" />
         <div className="absolute bottom-[-20%] right-[-10%] h-96 w-96 rounded-full bg-[#6f8b55]/20 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-24">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.1fr_0.9fr] md:px-6 md:py-24">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm uppercase tracking-[0.25em] text-[#e2c783]">
               Coming soon · Early access
             </p>
 
-            <h1 className="mb-6 max-w-3xl text-5xl font-bold leading-[1.05] md:text-7xl">
+            <h1 className="mb-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-7xl">
               Moroccan Haircare, reimagined for Europe
             </h1>
 
@@ -134,11 +134,11 @@ export default function Home() {
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur">
-            <div className="flex gap-3 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+            <div className="grid grid-cols-3 gap-2 md:gap-3">
               {originalProducts.map((product, index) => (
                 <div
                   key={product.name}
-                  className={`min-w-[140px] overflow-hidden rounded-3xl bg-white/10 md:min-w-0 ${
+                  className={`overflow-hidden rounded-3xl bg-white/10 ${
                     index === 1 ? "md:translate-y-8" : ""
                   }`}
                 >
@@ -147,7 +147,7 @@ export default function Home() {
                     alt={product.name}
                     width={500}
                     height={750}
-                    className="h-56 w-full object-contain p-2 md:h-72 md:p-3"
+                    className="h-40 w-full object-contain p-2 sm:h-52 md:h-72 md:p-3"
                   />
                 </div>
               ))}
